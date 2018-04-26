@@ -2,9 +2,10 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var bears = [
-{ id: 1, name: 'Ple' },
-{id : 2, name : 'Tle'}
+{id:'1', name: 'Ple' },
+{id:'2', name : 'Tle'}
 ];
 var cors = require('cors');
 router.route('/bears')
@@ -17,12 +18,12 @@ router.route('/bears')
     bears.push(bear);
     res.json({ message: 'Bear created!' });
 })
- router.route('/bear/:id')
-    .delete(function(req,res)
-{
-    bears=bears.filter(b=>b.id!=req.params.id )
-    res.json({ message: 'Bear deleted' });
-})
+router.route('/bears/:id')
+    .delete(function (req, res) {
+        bears = bears.filter(b => b.id !== req.params.id)
+        res.json({ message: 'Bear deleted!' });
+      
+    })
 app.use(cors())
 // all of our routes will be prefixed with /api
 app.use('/api', bodyParser.json(), router);
