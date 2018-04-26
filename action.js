@@ -22,3 +22,11 @@ export function deleteBear(id){
         })
     }
 }
+export function createBear(bear) {
+    return (dispatch) => {
+        axios.post(`http://localhost:8000/api/bears`, bear)
+       .then(() => {
+           dispatch(fetchBear())
+       })
+    }
+}

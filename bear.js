@@ -7,7 +7,8 @@ var bears = [
 {id:'1', name: 'Ple' },
 {id:'2', name : 'Tle'}
 ];
-var cors = require('cors');
+
+var last_bear_id = 3;
 router.route('/bears')
 	.get(function (req, res) {
 	    res.send(bears);
@@ -16,6 +17,7 @@ router.route('/bears')
     var bear = {};
     bear.name = req.body.name;
     bears.push(bear);
+    bear.id = "" + (last_bear_id++);
     res.json({ message: 'Bear created!' });
 })
 router.route('/bears/:id')
